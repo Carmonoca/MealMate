@@ -45,7 +45,7 @@ O MealMate é uma plataforma online dedicada ao gerenciamento da sua alimentaç�
 
 
 
-## 🔖 Funções
+## 🔖 Protótipo
 
 
 
