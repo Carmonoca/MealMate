@@ -17,7 +17,7 @@ import {
 
 const Tab = createBottomTabNavigator();
 
-export default function Routes() {
+export default function TabRoutes() {
   return (
     <Tab.Navigator
       screenOptions={{

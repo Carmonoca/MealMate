@@ -6,40 +6,54 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
 import { useNavigation } from "@react-navigation/native";
 
-export default function Login() {
-
+export default function Cadastro() {
   const navigate = useNavigation();
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.circleBlue}></View>
       <View style={styles.circleGreen}></View>
       <View>
-        <Text style={styles.textLogin}>Login</Text>
-        <Text style={styles.textSubLogin}>Entre na sua conta</Text>
+        <Text style={styles.textLogin}>
+          <Text style={styles.textLoginWhite}>Cad</Text>astro
+        </Text>
+        <Text style={styles.textSubLogin}>
+          <Text style={styles.textSubLoginWhite}>Já possui u</Text>ma conta?{" "}
+          <TouchableOpacity
+            onPress={() => {
+              navigate.navigate("Login");
+            }}
+          >
+            <Text style={styles.textBackLogin}>Faça Login</Text>
+          </TouchableOpacity>
+        </Text>
       </View>
       <View style={styles.containerLogin}>
         <View style={styles.containerInput}>
+          <Text>Nome</Text>
+          <TextInput style={styles.input} />
+        </View>
+        <View style={styles.containerInput}>
           <Text>E-mail</Text>
+          <TextInput style={styles.input} />
+        </View>
+        <View style={styles.containerInput}>
+          <Text>Data de nascimento</Text>
           <TextInput style={styles.input} />
         </View>
         <View style={styles.containerInput}>
           <Text>Senha</Text>
           <TextInput style={styles.input} />
         </View>
-        <TouchableOpacity style={styles.buttonEntrar} >
-          <Text style={styles.textButton}>Entrar</Text>
+        <TouchableOpacity
+          style={styles.buttonEntrar}
+          onPress={() => {
+            navigate.navigate("Cadastro2");
+          }}
+        >
+          <Text style={styles.textButton}>Próximo</Text>
         </TouchableOpacity>
-        <View style={styles.footer}>
-          <TouchableOpacity >
-            <Text style={styles.textButtonFooter}>Esqueceu a senha?</Text>
-          </TouchableOpacity>
-          <TouchableOpacity >
-            <Text style={styles.textButtonFooter} onPress={() => {navigate.navigate("Cadastro")}}>Cadastrar</Text>
-          </TouchableOpacity>
-        </View>
       </View>
     </SafeAreaView>
   );
@@ -54,21 +68,36 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  textBackLogin: {
+    fontSize: 20,
+    fontWeight: "400",
+  },
   textLogin: {
     fontSize: 34,
     fontWeight: "500",
   },
   textSubLogin: {
-    fontSize: 30,
+    fontSize: 20,
     fontWeight: "400",
+  },
+  textLoginWhite: {
+    fontSize: 34,
+    fontWeight: "400",
+    color: "#FFF",
+  },
+  textSubLoginWhite: {
+    fontSize: 20,
+    fontWeight: "400",
+    color: "#FFF",
   },
   containerLogin: {
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#FFF",
     width: 350,
-    height: 450,
+    paddingVertical: 30,
     borderRadius: 20,
+    marginTop: 20,
   },
   containerInput: {
     width: 300,
