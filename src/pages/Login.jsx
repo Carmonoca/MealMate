@@ -57,6 +57,7 @@ export default function Login() {
           <TextInput
             style={styles.input}
             autoCapitalize="none"
+            secureTextEntry={true}
             value={user.password}
             onChangeText={(e) => setUser({ ...user, password: e })}
           />
