@@ -13,7 +13,9 @@ import {
   Entypo,
   MaterialCommunityIcons,
   MaterialIcons,
+  AntDesign
 } from "@expo/vector-icons";
+import Perfil from "../pages/Perfil";
 
 const Tab = createBottomTabNavigator();
 
@@ -28,16 +30,10 @@ export default function TabRoutes() {
         tabBarActiveTintColor: "#004AAD",
         tabBarInactiveTintColor: "#000",
       }}
+
+      initialRouteName="Inicio"
     >
-      <Tab.Screen
-        name="Inicio"
-        component={Inicio}
-        options={{
-          tabBarIcon: ({ size, color }) => (
-            <Entypo name="home" size={size} color={color} />
-          ),
-        }}
-      />
+     
       <Tab.Screen
         name="Alimentos"
         component={Alimentos}
@@ -60,12 +56,31 @@ export default function TabRoutes() {
           ),
         }}
       />
+       <Tab.Screen
+        name="Inicio"
+        component={Inicio}
+        options={{
+          tabBarIcon: ({ size, color }) => (
+            <Entypo name="home" size={size} color={color} />
+          ),
+        }}
+      />
+      
       <Tab.Screen
         name="Cardapio"
         component={Cardapio}
         options={{
           tabBarIcon: ({ size, color }) => (
             <MaterialIcons name="restaurant-menu" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Perfil"
+        component={Perfil}
+        options={{
+          tabBarIcon: ({ size, color }) => (
+            <AntDesign name="user" size={size} color={color} />
           ),
         }}
       />

@@ -16,10 +16,10 @@ export default function Cadastro() {
       <View style={styles.circleGreen}></View>
       <View>
         <Text style={styles.textLogin}>
-          <Text style={styles.textLoginWhite}>Cad</Text>astro
+          Cadastro
         </Text>
         <Text style={styles.textSubLogin}>
-          <Text style={styles.textSubLoginWhite}>Já possui u</Text>ma conta?{" "}
+          <Text style={styles.textSubLoginWhite}>Já possui </Text>uma conta?{" "}
           <TouchableOpacity
             onPress={() => {
               navigate.navigate("Login");

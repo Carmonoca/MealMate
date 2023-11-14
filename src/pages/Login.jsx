@@ -6,12 +6,34 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
+import React, { useContext, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import AuthContext, { Context } from "../context/authContext";
+import * as RootNavigation from "../routes/RootNavigation";
 
 export default function Login() {
-
+  const { signIn, signed } = useContext(Context);
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
   const navigate = useNavigation();
+
+  const resetUser = () => {
+    setUser({
+      email: "",
+      password: "",
+    });
+  };
+  const handdleLogin = async () => {
+    if (user.email === "" || user.password === "") {
+      alert("Preencha todos os campos");
+    } else {
+      await signIn({ email: user.email, password: user.password });
+      resetUser();
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.circleBlue}></View>
@@ -23,21 +45,35 @@ export default function Login() {
       <View style={styles.containerLogin}>
         <View style={styles.containerInput}>
           <Text>E-mail</Text>
-          <TextInput style={styles.input} />
+          <TextInput
+            style={styles.input}
+            autoCapitalize="none"
+            value={user.email}
+            onChangeText={(e) => setUser({ ...user, email: e })}
+          />
         </View>
         <View style={styles.containerInput}>
           <Text>Senha</Text>
-          <TextInput style={styles.input} />
+          <TextInput
+            style={styles.input}
+            autoCapitalize="none"
+            value={user.password}
+            onChangeText={(e) => setUser({ ...user, password: e })}
+          />
         </View>
-        <TouchableOpacity style={styles.buttonEntrar} >
+        <TouchableOpacity style={styles.buttonEntrar} onPress={handdleLogin}>
           <Text style={styles.textButton}>Entrar</Text>
         </TouchableOpacity>
         <View style={styles.footer}>
-          <TouchableOpacity >
-            <Text style={styles.textButtonFooter}>Esqueceu a senha?</Text>
-          </TouchableOpacity>
-          <TouchableOpacity >
-            <Text style={styles.textButtonFooter} onPress={() => {navigate.navigate("Cadastro")}}>Cadastrar</Text>
+          <TouchableOpacity
+            onPress={() => {
+              RootNavigation.navigate("Cadastro");
+            }}
+          >
+            <Text style={styles.textButtonFooter}>
+              Não possui conta?{" "}
+              <Text style={styles.textButtonFooterBlue}>Cadastre-se</Text>
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -105,7 +141,11 @@ const styles = StyleSheet.create({
   },
   textButtonFooter: {
     color: "#1E1E1E",
-    opacity: 0.5,
+    fontSize: 14,
+    fontWeight: "400",
+  },
+  textButtonFooterBlue: {
+    color: "#004AAD",
     fontSize: 14,
     fontWeight: "400",
   },
